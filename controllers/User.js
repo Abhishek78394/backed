@@ -11,7 +11,6 @@ export const register = async (req, res) => {
       // const avatar = req.files.avatar.tempFilePath;
 
       let user = await User.findOne({ email });
-  
       if (user) {
         return res
           .status(400)
@@ -34,7 +33,7 @@ export const register = async (req, res) => {
         //   url: mycloud.secure_url,
         // },
         otp,
-        otp_expiry: new Date(Date.now() + 10 * 60 * 1000)
+        otp_expiry: new Date(Date.now() + 6 * 60 * 1000)
       });
   
       await sendMail(email, "Verify your account", `Your OTP is ${otp}`);
@@ -45,7 +44,9 @@ export const register = async (req, res) => {
         201,
         "OTP sent to your email, please verify your account"
       );
+
     } catch (error) {
+      console.log(error.message)
       console.log(error)
       res.status(500).json({ success: false, message: error.message });
     }
