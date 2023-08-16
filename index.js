@@ -15,7 +15,9 @@ app.use(
     useTempFiles: true,
   })
 );
+// adding cors
 app.use(cors());
+app.options('*', cors());
 
 app.use("/api/v1", User);
 
@@ -37,6 +39,7 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
 });
+
 connectDB();
 
 app.listen(process.env.PORT, () => {
