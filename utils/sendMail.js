@@ -10,10 +10,12 @@ export const sendMail = async (email, subject, text) => {
     },
   });
 
-  await transport.sendMail({
+  const mailOptions = {
     from: process.env.SMTP_USER,
     to: email,
     subject,
     text,
-  });
+  };
+
+  await transport.sendMail(mailOptions);
 };

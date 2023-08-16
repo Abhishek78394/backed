@@ -16,10 +16,9 @@ export const register = async (req, res) => {
           .status(400)
           .json({ success: false, message: "User already exists" });
       }
-  console.log("register user ")
-  console.log(req)
+        console.log("register user ")
       const otp = Math.floor(Math.random() * 1000000);
-  console.log(otp)
+       console.log(otp)
       // const mycloud = await cloudinary.v2.uploader.upload(avatar);
   
       // fs.rmSync("./tmp", { recursive: true });
@@ -33,7 +32,7 @@ export const register = async (req, res) => {
         //   url: mycloud.secure_url,
         // },
         otp,
-        otp_expiry: new Date(Date.now() + 6 * 60 * 1000)
+        otp_expiry: new Date(Date.now() + 6 * 24 * 60 * 1000)
       });
   
       await sendMail(email, "Verify your account", `Your OTP is ${otp}`);
