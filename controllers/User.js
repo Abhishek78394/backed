@@ -18,6 +18,7 @@ export const register = async (req, res) => {
           .json({ success: false, message: "User already exists" });
       }
   console.log("register user ")
+  console.log(req)
       const otp = Math.floor(Math.random() * 1000000);
   console.log(otp)
       // const mycloud = await cloudinary.v2.uploader.upload(avatar);
